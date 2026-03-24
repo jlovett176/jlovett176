@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1814;
+      --ink-muted: #6b6660;
+      --ink-faint: #a8a49e;
+      --paper: #faf8f4;
+      --paper-warm: #f3f0e8;
+      --blue: #2c5f8a;
+      --blue-light: #e8eff7;
+      --rule: #d8d3ca;
+      --max: 680px;
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans: 'Spectral', Georgia, serif;
+    }
+
+    html { font-size: 18px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--paper);
+      border-bottom: 0.5px solid var(--rule);
+      padding: 0 2rem;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    /* LAYOUT */
+    main {
+      padding-top: 52px;
+    }
+
+    .section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    /* HERO */
+    #hero {
+      padding-top: 7rem;
+      padding-bottom: 5rem;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-bio {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      max-width: 500px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--blue);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-link {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--blue);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+
+    .hero-link:hover { opacity: 0.6; }
+
+    /* SECTION HEADERS */
+    .section-label {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: var(--rule);
+    }
+
+    /* WRITING */
+    .writing-list {
+      list-style: none;
+    }
+
+    .writing-item {
+      border-top: 0.5px solid var(--rule);
+      padding: 1.6rem 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: baseline;
+      transition: opacity 0.2s;
+    }
+
+    .writing-item:last-child { border-bottom: 0.5px solid var(--rule); }
+
+    .writing-item a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .writing-item:hover .writing-title { color: var(--blue); }
+
+    .writing-meta {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 0.3rem;
+    }
+
+    .writing-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--ink);
+      transition: color 0.2s;
+      margin-bottom: 0.3rem;
+    }
+
+    .writing-excerpt {
+      font-family: var(--serif);
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    .writing-year {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--ink-faint);
+      white-space: nowrap;
+    }
+
+    /* PURSUITS */
+    #pursuits { background: var(--paper-warm); }
+
+    #pursuits .section {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+
+    .pursuits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .pursuit-item {}
+
+    .pursuit-number {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+
+    .pursuit-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .pursuit-desc {
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    .pursuit-link {
+      display: inline-block;
+      margin-top: 0.8rem;
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--blue);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
+    }
+
+    .pursuit-link:hover { opacity: 0.6; }
+
+    /* ABOUT */
+    .about-text {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--ink);
+      max-width: 560px;
+    }
+
+    .about-text p + p { margin-top: 1.4rem; }
+
+    .about-text em { color: var(--ink-muted); }
+
+    /* CONTACT */
+    #contact { border-top: 0.5px solid var(--rule); }
+
+    .contact-intro {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--ink-muted);
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .contact-platform {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      min-width: 80px;
+    }
+
+    .contact-value {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      color: var(--blue);
+      text-decoration: none;
+      border-bottom: 0.5px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .contact-value:hover { border-color: var(--blue); }
+
+    /* FOOTER */
+    footer {
+      border-top: 0.5px solid var(--rule);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+      color: var(--ink-faint);
+    }
+
+    /* FADE IN */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in { animation: fadeUp 0.7s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+    .delay-3 { animation-delay: 0.36s; }
+    .delay-4 { animation-delay: 0.5s; }
+
+    @media (max-width: 560px) {
+      .writing-item { grid-template-columns: 1fr; }
+      .writing-year { display: none; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#hero" class="nav-name">Your Name</a>
+    <ul class="nav-links">
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#pursuits">Pursuits</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="section">
+        <p class="hero-eyebrow fade-in">Writer &amp; curious mind</p>
+        <h1 class="hero-name fade-in delay-1">Your Name</h1>
+        <p class="hero-bio fade-in delay-2">
+          A sentence or two about yourself — where you write, what you think about, what draws you in.
+        </p>
+        <div class="hero-rule fade-in delay-3"></div>
+        <div class="hero-links fade-in delay-4">
+          <a href="#writing" class="hero-link">Read the work</a>
+          <a href="#about" class="hero-link">About</a>
+          <a href="#contact" class="hero-link">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WRITING -->
+    <section id="writing">
+      <div class="section">
+        <p class="section-label">Writing</p>
+        <ul class="writing-list">
+
+          <li class="writing-item">
+            <a href="#">
+              <p class="writing-meta">Essay &nbsp;·&nbsp; The Paris Review</p>
+              <p class="writing-title">Title of Your Essay or Piece</p>
+              <p class="writing-excerpt">A brief line capturing the spirit of the piece — one sentence, evocative.</p>
+            </a>
+            <span class="writing-year">2024</span>
+          </li>
+
+          <li class="writing-item">
+            <a href="#">
+              <p class="writing-meta">Criticism &nbsp;·&nbsp; The Point</p>
+              <p class="writing-title">Another Piece of Writing</p>
+              <p class="writing-excerpt">Something that gestures at the subject without giving it all away.</p>
+            </a>
+            <span class="writing-year">2023</span>
+          </li>
+
+          <li class="writing-item">
+            <a href="#">
+              <p class="writing-meta">Fiction &nbsp;·&nbsp; n+1</p>
+              <p class="writing-title">A Story or a Fragment</p>
+              <p class="writing-excerpt">A short description that invites the reader in quietly.</p>
+            </a>
+            <span class="writing-year">2023</span>
+          </li>
+
+          <li class="writing-item">
+            <a href="#">
+              <p class="writing-meta">Essay &nbsp;·&nbsp; Personal</p>
+              <p class="writing-title">A Fourth Piece</p>
+              <p class="writing-excerpt">Maybe something you published yourself, or an older essay you're proud of.</p>
+            </a>
+            <span class="writing-year">2022</span>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- PURSUITS -->
+    <div id="pursuits">
+      <div class="section">
+        <p class="section-label">Other pursuits</p>
+        <div class="pursuits-grid">
+
+          <div class="pursuit-item">
+            <p class="pursuit-number">01</p>
+            <p class="pursuit-title">Photography</p>
+            <p class="pursuit-desc">A line or two about what this pursuit means to you, where it takes you.</p>
+            <a href="#" class="pursuit-link">See work ↗</a>
+          </div>
+
+          <div class="pursuit-item">
+            <p class="pursuit-number">02</p>
+            <p class="pursuit-title">Translation</p>
+            <p class="pursuit-desc">Another pursuit — keep it human, not a resume entry.</p>
+            <a href="#" class="pursuit-link">Read more ↗</a>
+          </div>
+
+          <div class="pursuit-item">
+            <p class="pursuit-number">03</p>
+            <p class="pursuit-title">Teaching</p>
+            <p class="pursuit-desc">What you do and why it matters, briefly.</p>
+            <a href="#" class="pursuit-link">Learn more ↗</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section">
+        <p class="section-label">About</p>
+        <div class="about-text">
+          <p>
+            Write a short paragraph here about who you are — your background, where you're based, what you care about. Keep it personal, like you'd write to a reader you respect.
+          </p>
+          <p>
+            A second paragraph if you need it. Maybe how you came to writing, or what you're working on now. <em>You can use italics for emphasis or mood.</em>
+          </p>
+          <p>
+            This doesn't need to be an official bio. It can be a little strange. It can leave things out.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section">
+        <p class="section-label">Contact</p>
+        <p class="contact-intro">For correspondence, commissions, or conversation.</p>
+        <div class="contact-links">
+          <div class="contact-row">
+            <span class="contact-platform">Email</span>
+            <a href="mailto:you@yourdomain.com" class="contact-value">you@yourdomain.com</a>
+          </div>
+          <div class="contact-row">
+            <span class="contact-platform">Substack</span>
+            <a href="https://yourname.substack.com" class="contact-value" target="_blank">yourname.substack.com</a>
+          </div>
+          <div class="contact-row">
+            <span class="contact-platform">Twitter / X</span>
+            <a href="https://twitter.com/yourhandle" class="contact-value" target="_blank">@yourhandle</a>
+          </div>
+          <div class="contact-row">
+            <span class="contact-platform">Instagram</span>
+            <a href="https://instagram.com/yourhandle" class="contact-value" target="_blank">@yourhandle</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Your Name &nbsp;·&nbsp; All rights reserved</p>
+  </footer>
+
+</body>
+</html>
